@@ -1,0 +1,82 @@
+---
+---
+
+<header>
+  <div class="header-container">
+    <div class="logo">
+      <a href="/">DECONENG</a>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/services">Services</a></li>
+        <li><a href="/projects">Projects</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    background-color: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 10;
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+  }
+
+  .logo a {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  nav a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease-out;
+  }
+
+  nav a:hover {
+    color: var(--color-text-primary);
+  }
+
+  nav a:hover::after {
+    width: 100%;
+  }
+</style>

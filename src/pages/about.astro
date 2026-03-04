@@ -1,0 +1,192 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const values = [
+  {
+    title: "Innovation",
+    description: "We embrace advanced technologies and creative problem-solving to deliver cutting-edge engineering solutions that exceed client expectations."
+  },
+  {
+    title: "Safety",
+    description: "Safety is our top priority. We uphold the highest standards in design and construction to protect public welfare and project integrity."
+  },
+  {
+    title: "Excellence",
+    description: "We are committed to technical excellence, quality assurance, and delivering projects that meet or exceed industry standards."
+  },
+  {
+    title: "Sustainability",
+    description: "We design with environmental responsibility in mind, promoting sustainable practices and resilient infrastructure."
+  },
+  {
+    title: "Collaboration",
+    description: "We believe in strong partnerships with clients, contractors, and stakeholders to achieve shared project goals."
+  },
+  {
+    title: "Client Focus",
+    description: "Our clients' success is our success. We provide responsive service and innovative solutions tailored to their unique needs."
+  }
+];
+
+const stats = [
+    { value: "15", label: "Years in Business" },
+    { value: "11", label: "States Licensed" },
+    { value: "100+", label: "Projects Completed" },
+    { value: "$5B+", label: "Project Value" }
+];
+
+const markets = [
+    {
+        title: "Public Sector",
+        items: ["State Departments of Transportation", "Toll Road Authorities", "Municipal Governments", "Regional Agencies"]
+    },
+    {
+        title: "Private Sector",
+        items: ["Real Estate Developers", "General Contractors", "Engineering Firms", "Corporate Facilities"]
+    },
+    {
+        title: "P3 Projects",
+        items: ["Design-Build Teams", "Public-Private Partnerships", "Alternative Delivery Methods", "Progressive Design-Build"]
+    }
+]
+
+---
+
+<Layout title="About Deconeng">
+  <Header />
+  <main>
+    <section class="page-hero">
+      <div class="section-container">
+        <h1 class="page-title">15 Years of Engineering Excellence</h1>
+        <p class="page-subtitle">DECON LLC is a Houston-based, multidisciplinary engineering firm specializing in civil, structural, and architectural design solutions for clients across Texas and the United States.</p>
+      </div>
+    </section>
+
+    <!-- Who We Are -->
+    <section class="who-we-are">
+        <div class="section-container-narrow">
+            <h2 class="section-title-small">Who We Are</h2>
+            <p>Since our founding in 2010, DECON has established a strong reputation for delivering innovative, resilient, and cost-effective engineering solutions that enhance the built environment and uphold the highest standards of safety, functionality, and sustainability.</p>
+            <p>Our team brings together extensive experience in Design-Build, Public-Private Partnerships (P3), and traditional design projects, serving Departments of Transportation, toll authorities, municipalities, and private developers.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="section-container stats-grid">
+            {stats.map(stat => (
+                <div class="stat-item">
+                    <span class="stat-value">{stat.value}</span>
+                    <span class="stat-label">{stat.label}</span>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="section-container">
+            <h2 class="section-title">Our Mission & Values</h2>
+            <div class="values-grid">
+                {values.map(value => (
+                    <div class="value-card">
+                        <h3>{value.title}</h3>
+                        <p>{value.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section class="markets-section">
+        <div class="section-container">
+            <h2 class="section-title">Markets We Serve</h2>
+            <div class="markets-grid">
+                {markets.map(market => (
+                    <div class="market-card">
+                        <h4>{market.title}</h4>
+                        <ul>
+                            {market.items.map(item => <li>{item}</li>)}
+                        </ul>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certs-section">
+        <div class="section-container-narrow">
+            <h2 class="section-title-small">Certifications & Registrations</h2>
+            <p class="certs-intro">We are qualified and certified to operate across multiple states, holding numerous professional engineering licenses and a comprehensive NCEES P.E. Record.</p>
+            <h4>TxDOT Precertification</h4>
+            <p>Pre-certified in 24 work categories including Bridge Design (5.2.1), Multi-Level Interchange Design (5.3.1), Roadway Design (4.2.1), and more.</p>
+        </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section-container">
+        <h2>Ready to Build the Future?</h2>
+        <p>Experience the difference that 15 years of engineering excellence can make for your next project.</p>
+        <a href="/contact" class="cta-button">Get Started Today</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .page-hero {
+    background-color: var(--color-surface);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+  .page-title { font-size: 3.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 1rem; }
+  .page-subtitle { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto; }
+  .section-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem;}
+  .section-container-narrow { max-width: 800px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+
+  .section-title { font-size: 2.75rem; margin-bottom: 3rem; text-align: center; }
+  .section-title-small { font-size: 2.25rem; margin-bottom: 1.5rem; color: var(--color-primary); }
+
+  .who-we-are { padding: 6rem 0; text-align: center; }
+  .who-we-are p { color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+
+  /* --- Stats Section --- */
+  .stats-section { background-color: var(--color-primary); color: var(--color-background); padding: 4rem 2rem; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+  .stat-value { display: block; font-size: 3.5rem; font-weight: 700; color: var(--color-accent); }
+  .stat-label { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+
+  /* --- Values Section --- */
+  .values-section { padding: 6rem 0; background-color: var(--color-surface); }
+  .values-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+  .value-card { background: var(--color-background); padding: 2.5rem; border: 1px solid var(--color-border); border-radius: 8px; box-shadow: var(--shadow-sm); }
+  .value-card h3 { font-size: 1.5rem; color: var(--color-primary); margin-bottom: 1rem; }
+  .value-card p { line-height: 1.7; color: var(--color-text-secondary); }
+
+  /* --- Markets Section --- */
+  .markets-section { padding: 6rem 0; }
+  .markets-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+  .market-card { background-color: var(--color-surface); padding: 2.5rem; border-radius: 8px; border: 1px solid var(--color-border); }
+  .market-card h4 { font-size: 1.5rem; color: var(--color-accent); margin-bottom: 1.5rem; }
+  .market-card ul { list-style: none; padding: 0; }
+  .market-card li { margin-bottom: 0.5rem; color: var(--color-text-secondary); }
+
+  /* --- Certs Section --- */
+  .certs-section { padding: 6rem 0; background-color: var(--color-surface); }
+  .certs-intro { margin-bottom: 2rem; color: var(--color-text-secondary); line-height: 1.7; }
+  .certs-section h4 { font-size: 1.5rem; color: var(--color-primary); margin-top: 2rem; margin-bottom: 1rem; }
+  .certs-section p { color: var(--color-text-secondary); }
+
+  /* --- CTA Section --- */
+  .cta-section { background-color: var(--color-primary); color: var(--color-background); text-align: center; padding: 5rem 2rem; }
+  .cta-section h2 { font-size: 2.75rem; margin-bottom: 1rem; }
+  .cta-section p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; }
+  .cta-button { background-color: var(--color-accent); color: var(--color-background); padding: 1rem 3rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: background-color 0.3s ease, transform 0.3s ease; box-shadow: var(--shadow-md); }
+  .cta-button:hover { background-color: #0056b3; transform: translateY(-3px); }
+</style>

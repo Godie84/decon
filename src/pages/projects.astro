@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { projects } from '../data/projects.ts';
+---
+
+<Layout title="Our Projects - DECON LLC">
+  <Header />
+  <main>
+    <section class="page-hero">
+      <div class="section-container">
+        <h1 class="page-title">Delivering Excellence Across America</h1>
+        <p class="page-subtitle">Our work showcases a commitment to innovation, quality, and sustainable solutions that build a better future.</p>
+      </div>
+    </section>
+
+    <!-- This script is for the filtering functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card-wrapper');
+
+        filterButtons.forEach(button => {
+          button.addEventListener('click', () => {
+            // Update active button state
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filter = button.getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+              const category = card.getAttribute('data-category');
+              if (filter === 'All' || filter === category) {
+                card.style.display = 'block';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+      });
+    </script>
+
+    <section class="projects-gallery">
+      <div class="section-container">
+        <div class="filter-controls">
+          <button class="filter-btn active" data-filter="All">All Projects</button>
+          <button class="filter-btn" data-filter="Bridge Design">Bridge Design</button>
+          <button class="filter-btn" data-filter="Roadway & Drainage">Roadway & Drainage</button>
+          <button class="filter-btn" data-filter="Building Design">Building Design</button>
+        </div>
+
+        <div class="projects-grid">
+          {projects.map(project => (
+            <div class="project-card-wrapper" data-category={project.category}>
+              <a href={`/project/${project.id}`} class="project-card">
+                <div class="project-image">
+                  <img src={project.img} alt={project.img_alt} loading="lazy" />
+                </div>
+                <div class="project-content">
+                  <span class="project-category">{project.category}</span>
+                  <h3 class="project-title">{project.title}</h3>
+                  <p class="project-description">{project.description.substring(0, 120)}...</p>
+                  <div class="project-tags">
+                    {project.tags.map(tag => <span class="tag">{tag}</span>)}
+                  </div>
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="section-container">
+        <h2>Have a Project in Mind?</h2>
+        <p>Let's discuss how DECON can bring your vision to life with innovative engineering solutions.</p>
+        <a href="/contact" class="cta-button">Start Your Project</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  /* Page Hero */
+  .page-hero { background-color: var(--color-surface); text-align: center; padding: 5rem 2rem; }
+  .page-title { font-size: 3.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 1rem; }
+  .page-subtitle { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto; }
+  .section-container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Filter Controls */
+  .projects-gallery { padding: 6rem 2rem; }
+  .filter-controls { display: flex; justify-content: center; gap: 1rem; margin-bottom: 4rem; flex-wrap: wrap; }
+  .filter-btn { background: none; border: 1px solid var(--color-border); color: var(--color-text-primary); padding: 0.75rem 1.5rem; border-radius: 50px; cursor: pointer; font-weight: 500; transition: all 0.3s ease; }
+  .filter-btn:hover { background-color: var(--color-surface); color: var(--color-accent); }
+  .filter-btn.active { background-color: var(--color-accent); color: var(--color-background); border-color: var(--color-accent); }
+
+  /* Projects Grid */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2.5rem; }
+  
+  .project-card { display: flex; flex-direction: column; background-color: var(--color-surface); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; }
+  .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  
+  .project-image img { width: 100%; height: 220px; object-fit: cover; }
+  .project-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+  
+  .project-category { color: var(--color-accent); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .project-title { font-size: 1.35rem; color: var(--color-primary); margin-bottom: 0.75rem; }
+  .project-description { color: var(--color-text-secondary); line-height: 1.6; flex-grow: 1; margin-bottom: 1rem; }
+
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+  .tag { background-color: var(--color-background); border: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 15px; }
+
+  /* CTA Section */
+  .cta-section { background-color: var(--color-primary); color: var(--color-background); text-align: center; padding: 5rem 2rem; }
+  .cta-section h2 { font-size: 2.75rem; margin-bottom: 1rem; }
+  .cta-section p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; }
+  .cta-button { background-color: var(--color-accent); color: var(--color-background); padding: 1rem 3rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: var(--shadow-md); }
+  .cta-button:hover { background-color: #0056b3; transform: translateY(-3px); }
+</style>

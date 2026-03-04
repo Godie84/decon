@@ -1,0 +1,130 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { projects, type Project } from '../../data/projects.ts';
+
+export async function getStaticPaths() {
+  return projects.map(project => ({
+    params: { id: project.id },
+  }));
+}
+
+const { id } = Astro.params;
+const project = projects.find(p => p.id === id) as Project;
+
+if (!project) {
+  return new Response(null, {
+    status: 404,
+    statusText: 'Not Found'
+  });
+}
+---
+
+<Layout title={`${project.title} - DECON LLC`}>
+  <Header />
+  <main>
+    <article class="project-detail">
+      <header class="project-header">
+        <div class="section-container">
+          <p class="project-category-header">{project.category}</p>
+          <h1 class="project-title-header">{project.title}</h1>
+          <div class="header-tags">
+            {project.tags.map(tag => <span class="tag">{tag}</span>)}
+          </div>
+        </div>
+      </header>
+
+      <div class="project-image-banner">
+        <img src={project.img} alt={project.img_alt} />
+      </div>
+
+      <div class="project-body">
+        <div class="section-container-narrow">
+          <h2 class="section-title-small">Project Overview</h2>
+          <p class="project-description-full">{project.description}</p>
+          
+          <!-- You can add more project-specific details here -->
+          <!-- For example: -->
+          <!-- <div class="project-stats">
+            <div class="stat"><strong>Value:</strong> $1.59 Billion</div>
+            <div class="stat"><strong>Completion:</strong> 2027</div>
+          </div> -->
+
+        </div>
+      </div>
+
+    </article>
+
+    <section class="cta-section">
+      <div class="section-container">
+        <h2>Inspired by Our Work?</h2>
+        <p>Let's collaborate on your next landmark project. Reach out to our team today.</p>
+        <a href="/contact" class="cta-button">Contact Us</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .section-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section-container-narrow { max-width: 800px; margin: 0 auto; padding: 0 2rem; }
+
+  .project-header {
+    background-color: var(--color-surface);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+  .project-category-header {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  .project-title-header {
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+  .header-tags { display: flex; justify-content: center; gap: 0.75rem; flex-wrap: wrap; }
+  .tag { background-color: var(--color-background); border: 1px solid var(--color-border); color: var(--color-text-secondary); font-size: 0.85rem; padding: 0.35rem 1rem; border-radius: 20px; }
+
+  .project-image-banner {
+    width: 100%;
+    height: 60vh;
+    max-height: 700px;
+  }
+  .project-image-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .project-body {
+    padding: 6rem 0;
+  }
+
+  .section-title-small {
+    font-size: 2.25rem;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+    text-align: center;
+  }
+
+  .project-description-full {
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+  }
+
+  /* CTA Section */
+  .cta-section { background-color: var(--color-primary); color: var(--color-background); text-align: center; padding: 5rem 2rem; }
+  .cta-section h2 { font-size: 2.75rem; margin-bottom: 1rem; }
+  .cta-section p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; }
+  .cta-button { background-color: var(--color-accent); color: var(--color-background); padding: 1rem 3rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: var(--shadow-md); }
+  .cta-button:hover { background-color: #0056b3; transform: translateY(-3px); }
+
+</style>

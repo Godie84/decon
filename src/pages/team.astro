@@ -1,0 +1,162 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { teamMembers, type TeamMember } from '../data/team.ts';
+
+const leadership = teamMembers.filter(m => m.category === 'Executive Leadership');
+const management = teamMembers.filter(m => m.category === 'Senior Management');
+const quality = teamMembers.filter(m => m.category === 'Quality Assurance');
+const managers = teamMembers.filter(m => m.category === 'Department Managers');
+
+const teamStats = [
+    { value: "11", label: "Leadership Team Members" },
+    { value: "6", label: "Licensed Professional Engineers" },
+    { value: "11", label: "States Licensed" },
+    { value: "15", label: "Years of Excellence" }
+];
+---
+
+<Layout title="Our Team - DECON LLC">
+  <Header />
+  <main>
+    <section class="page-hero">
+      <div class="section-container">
+        <h1 class="page-title">Experienced Leadership</h1>
+        <p class="page-subtitle">Meet the dedicated professionals driving engineering excellence and innovation at DECON LLC.</p>
+      </div>
+    </section>
+
+    <!-- Team Sections -->
+    <section class="team-display">
+        <div class="section-container-narrow">
+
+            <div class="team-category">
+                <h2 class="category-title">Executive Leadership</h2>
+                <div class="team-grid-single">
+                    {leadership.map(member => <TeamCard member={member} />)}
+                </div>
+            </div>
+
+            <div class="team-category">
+                <h2 class="category-title">Senior Management</h2>
+                <div class="team-grid">
+                    {management.map(member => <TeamCard member={member} />)}
+                </div>
+            </div>
+
+            <div class="team-category">
+                <h2 class="category-title">Quality Assurance</h2>
+                <div class="team-grid">
+                    {quality.map(member => <TeamCard member={member} />)}
+                </div>
+            </div>
+
+             <div class="team-category">
+                <h2 class="category-title">Department Managers</h2>
+                <div class="team-grid">
+                    {managers.map(member => <TeamCard member={member} />)}
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="section-container stats-grid">
+            {teamStats.map(stat => (
+                <div class="stat-item">
+                    <span class="stat-value">{stat.value}</span>
+                    <span class="stat-label">{stat.label}</span>
+                </div>
+            ))}
+        </div>
+    </section>
+
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="section-container">
+        <h2>Join Our Team</h2>
+        <p>Interested in being part of DECON's engineering excellence? We're always looking for talented professionals.</p>
+        <a href="/contact" class="cta-button">Get In Touch</a>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>
+
+<!-- Team Card Component -->
+<!-- This is an example of an Astro component defined within a page -->
+<!-- For larger projects, this might be in its own .astro file -->
+
+<!--
+--- 
+// src/components/TeamCard.astro 
+export interface Props {
+    member: TeamMember;
+}
+const { member } = Astro.props;
+---
+-->
+
+
+    <div class="team-card">
+        <div class="card-image">
+            <img src={Astro.props.member.imageUrl} alt={`Portrait of ${Astro.props.member.name}`} loading="lazy" />
+        </div>
+        <div class="card-content">
+            <h3 class="member-name">{Astro.props.member.name}</h3>
+            <p class="member-title">{Astro.props.member.title}</p>
+            {Astro.props.member.credentials && Astro.props.member.credentials.length > 0 && (
+                <div class="credentials">
+                    {Astro.props.member.credentials.map(cred => <span class="credential-tag">{cred}</span>)}
+                </div>
+            )}
+        </div>
+    </div>
+
+
+<style>
+  /* Page Hero */
+  .page-hero { background-color: var(--color-surface); text-align: center; padding: 5rem 2rem; }
+  .page-title { font-size: 3.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 1rem; }
+  .page-subtitle { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto; }
+  .section-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+  .section-container-narrow { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Team Display */
+  .team-display { padding: 6rem 0; }
+  .team-category { margin-bottom: 5rem; }
+  .category-title { font-size: 2.5rem; color: var(--color-primary); text-align: center; margin-bottom: 3rem; border-bottom: 2px solid var(--color-accent); display: inline-block; padding-bottom: 0.5rem; left: 50%; position: relative; transform: translateX(-50%); }
+  .team-grid, .team-grid-single { display: grid; gap: 2.5rem; }
+  
+  .team-grid-single { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; } /* Centered single column */
+  .team-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+  /* Team Card (Component-like styles) */
+  .team-card { background-color: var(--color-surface); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .team-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+  .card-image img { width: 100%; height: 320px; object-fit: cover; object-position: top; }
+  .card-content { padding: 1.5rem; }
+  .member-name { font-size: 1.35rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.5rem; }
+  .member-title { color: var(--color-text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
+  .credentials { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+  .credential-tag { background-color: var(--color-accent-soft); color: var(--color-accent); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 15px; font-weight: 500; }
+
+  /* Stats Section */
+  .stats-section { background-color: var(--color-primary); color: var(--color-background); padding: 5rem 2rem; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; text-align: center; max-width: 1000px; }
+  .stat-item { padding: 1rem; }
+  .stat-value { display: block; font-size: 3rem; font-weight: 700; color: var(--color-accent); }
+  .stat-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
+  
+  /* CTA Section */
+  .cta-section { background-color: var(--color-accent-soft); text-align: center; padding: 5rem 2rem; border-top: 1px solid var(--color-border); }
+  .cta-section h2 { font-size: 2.75rem; margin-bottom: 1rem; color: var(--color-primary); }
+  .cta-section p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; color: var(--color-text-secondary); }
+  .cta-button { background-color: var(--color-accent); color: var(--color-background); padding: 1rem 3rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: var(--shadow-md); }
+  .cta-button:hover { background-color: #0056b3; transform: translateY(-3px); }
+</style>
