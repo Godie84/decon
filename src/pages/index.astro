@@ -1,163 +1,470 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import IconStructural from '../components/icons/IconStructural.astro';
-import IconProjectManagement from '../components/icons/IconProjectManagement.astro';
-import IconMEP from '../components/icons/IconMEP.astro';
+import CallToAction from '../components/CallToAction.astro';
 
-const stats = [
-    { value: "15", label: "Years in Business" },
-    { value: "11", label: "States Licensed" },
-    { value: "100+", label: "Projects Completed" },
-    { value: "$5B+", label: "Total Project Value" }
+const credentials = [
+  {
+    title: "Licensed in 11 States",
+    description: "P.E. credentials in Texas, Georgia, Virginia, Florida, Oklahoma, Louisiana, Tennessee, Maryland, North Carolina, DC, South Carolina, Alabama, and Utah",
+    icon: `
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="24" fill="#EBF5FF"/>
+        <path d="M32.5 19.125L24.875 14.5L17.25 19.125V28.5L24.875 33.125L32.5 28.5V19.125Z" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M22.25 21.75L24.875 23.375L27.5 21.75" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24.875 28.5V23.375" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  },
+  {
+    title: "DBE/MBE Certified",
+    description: "TxDOT Pre-certified in multiple work categories including bridge design, roadway design, and construction engineering",
+    icon: `
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="24" fill="#EBF5FF"/>
+        <path d="M24.875 33.125C29.9884 33.125 34.125 28.9884 34.125 23.875C34.125 18.7616 29.9884 14.625 24.875 14.625C19.7616 14.625 15.625 18.7616 15.625 23.875C15.625 28.9884 19.7616 33.125 24.875 33.125Z" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M27.5 26.5L24.875 23.875L22.25 26.5L19.625 23.875L22.25 21.25L24.875 23.875L27.5 21.25L30.125 23.875L27.5 26.5Z" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  },
+  {
+    title: "Trusted Partner",
+    description: "Proven track record with DOTs, toll authorities, and private developers across the United States",
+    icon: `
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="24" fill="#EBF5FF"/>
+        <path d="M31.25 28.5V26.5C31.25 25.4391 30.8286 24.4217 30.0784 23.6716C29.3283 22.9214 28.3109 22.5 27.25 22.5H21.25C20.1891 22.5 19.1717 22.9214 18.4216 23.6716C17.6714 24.4217 17.25 25.4391 17.25 26.5V28.5" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M24.25 19.5C25.9069 19.5 27.25 18.1569 27.25 16.5C27.25 14.8431 25.9069 13.5 24.25 13.5C22.5931 13.5 21.25 14.8431 21.25 16.5C21.25 18.1569 22.5931 19.5 24.25 19.5Z" stroke="#0066CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  }
+];
+
+const coreServices = [
+  {
+    title: "Bridge Design & Construction Engineering",
+    description: "Specializing in diverse bridge types and structural systems with extensive experience in Design-Build and P3 projects.",
+    capabilities: ["Value Engineering & Optimization", "Bridge Erection Engineering", "Structural Shop Drawings", "Retaining Wall Design"],
+    link: "/services",
+    icon: `
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 9.5V14.5H4V12.5H6V14.5H8V12.5H10V14.5H12V12.5H14V14.5H16V12.5H18V14.5H20V12.5H22V9.5C22 7.5 21 6 19.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 9.5C2 7.5 3 6 4.5 5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 14.5V20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 14.5L5 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 14.5L19 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  },
+  {
+    title: "Roadway & Drainage",
+    description: "Specialized services in Design-Build, PS&E, and trail development with expertise in traffic modeling and optimization.",
+    capabilities: ["Highway Design & Drainage", "Traffic Control Plans", "3D Traffic Modeling", "Stormwater Management"],
+    link: "/services",
+    icon: `
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 20L8 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 4L20 20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M2 12H22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  },
+  {
+    title: "Building Design",
+    description: "Comprehensive civil and structural design for residential, commercial, institutional, and industrial buildings with BIM integration.",
+    capabilities: ["Structural Analysis & Design", "BIM Implementation (LOD 100-500)", "Foundation Design", "Construction Support"],
+    link: "/services",
+    icon: `
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 22V8L12 3L20 8V22H4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 14H14V18H10V14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M10 10H14V12H10V10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    `
+  }
+];
+
+const featuredProjects = [
+    {
+        id: 1,
+        title: "I-35 NEX Central Project",
+        category: "Bridge Design",
+        location: "Multiple Counties, TX",
+        description: "$1.59 billion elevated highway project designing bridges 503-507 with 3D modeling and retaining wall analysis.",
+        stat1: "$1.59B",
+        stat2: "2027",
+        imageUrl: "/images/project-i35.jpg"
+    },
+    {
+        id: 2,
+        title: "SH 99 Grand Parkway",
+        category: "Roadway & Drainage",
+        location: "Multiple Counties, TX",
+        description: "52.8-mile Grand Parkway project spanning four counties with new lanes and modernized tolling infrastructure.",
+        stat1: "$1.3B",
+        stat2: "2022",
+        imageUrl: "/images/project-sh99.jpg"
+    },
+    {
+        id: 3,
+        title: "Kaua Building",
+        category: "Building Design",
+        location: "Cartagena, Colombia",
+        description: "110,000 SF, 18-floor residential building with comprehensive structural design and BIM implementation.",
+        stat1: "18 Floors",
+        stat2: "110,000 SF",
+        imageUrl: "/images/project-kaua.jpg"
+    },
+    {
+        id: 4,
+        title: "I-285 & SH-400 Interchange",
+        category: "Bridge Design",
+        location: "Atlanta, GA",
+        description: "Complex multi-level interchange reconstruction project with advanced structural engineering solutions.",
+        stat1: "Multi-Level",
+        stat2: "Completed",
+        imageUrl: "/images/project-i285.jpg"
+    }
+];
+
+const trustedPartners = [
+    { name: "Texas Department of Transportation", icon: "fa-solid fa-road" },
+    { name: "Georgia Department of Transportation", icon: "fa-solid fa-road" },
+    { name: "Virginia Department of Transportation", icon: "fa-solid fa-road" },
+    { name: "Harris County Toll Road Authority", icon: "fa-solid fa-road-bridge" },
+    { name: "Ferrovial", icon: "fa-solid fa-hard-hat" },
+    { name: "Webber", icon: "fa-solid fa-hard-hat" },
+    { name: "CobbFendley", icon: "fa-solid fa-drafting-compass" },
+    { name: "Grand Parkway Infrastructure", icon: "fa-solid fa-sitemap" },
+    { name: "Othon Consulting Engineers", icon: "fa-solid fa-drafting-compass" },
+    { name: "Pond", icon: "fa-solid fa-drafting-compass" },
+    { name: "City of Sugar Land", icon: "fa-solid fa-city" },
+    { name: "Houston Airport System", icon: "fa-solid fa-plane" }
 ];
 ---
 
 <Layout title="DECON LLC - Engineering Excellence Since 2010">
-  <Header />
   <main>
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <h1 class="hero-title">Engineering Excellence. Delivered.</h1>
-        <p class="hero-subtitle">A Houston-based, multidisciplinary engineering firm delivering innovative, resilient, and cost-effective solutions for public and private sector clients.</p>
-        <a href="/about" class="hero-cta">Learn More About Us</a>
-      </div>
+    <!-- 1. Promotional Banner -->
+    <section class="promo-banner">
+      <img src="/images/banner-decon.png" alt="DECON LLC promotional banner showing a montage of major infrastructure projects." />
     </section>
 
-    <section class="services">
-      <div class="section-container">
-        <h2 class="section-title">Core Disciplines</h2>
-        <p class="section-subtitle">We provide a comprehensive suite of services, from initial concept to final construction, specializing in civil, structural, and architectural design.</p>
-        <div class="service-grid">
-          <div class="service-card">
-            <div class="service-icon">
-              <IconStructural />
+    <!-- 2. Engineering Excellence Section -->
+    <CallToAction />
+
+    <!-- 3. About DECON LLC Section -->
+    <section class="page-section about-decon-rework">
+      <div class="section-header-center">
+        <h2 class="about-title">About DECON LLC</h2>
+        <p class="about-subtitle">Multidisciplinary Engineering Expertise</p>
+        <div class="about-title-underline"></div>
+      </div>
+      <div class="about-decon-container-rework">
+        <div class="about-decon-main-content">
+          <p>DECON LLC is a Houston-based, multidisciplinary engineering firm specializing in civil, structural, and architectural design solutions for both public and private sector clients across Texas and throughout the United States.</p>
+          <p>Since our founding in 2010, DECON has established a strong reputation for delivering innovative, resilient, and cost-effective engineering solutions that enhance the built environment and uphold the highest standards of safety, functionality, and sustainability.</p>
+        </div>
+        <div class="credentials-grid">
+          {credentials.map(cred => (
+            <div class="credential-card-rework">
+                <div class="credential-icon" set:html={cred.icon}></div>
+                 <h3>{cred.title}</h3>
+                 <p>{cred.description}</p>
             </div>
-            <h3>Bridge & Structural</h3>
-            <p>Designing the backbone of critical infrastructure with a focus on safety, resilience, and efficiency.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <IconProjectManagement />
-            </div>
-            <h3>Roadway & Drainage</h3>
-            <p>Expert roadway and drainage design to ensure optimal performance and public safety.</p>
-          </div>
-          <div class="service-card">
-            <div class="service-icon">
-              <IconMEP />
-            </div>
-            <h3>Building Design</h3>
-            <p>Integrated architectural and MEP solutions for functional, sustainable, and high-performance buildings.</p>
-          </div>
+          ))}
         </div>
       </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="section-container stats-grid">
-            {stats.map(stat => (
-                <div class="stat-item">
-                    <span class="stat-value">{stat.value}</span>
-                    <span class="stat-label">{stat.label}</span>
+    <!-- 4. Core Services Section -->
+    <section class="page-section core-services-rework">
+      <div class="section-header-center">
+        <h2 class="about-title">Our Core Services</h2>
+        <p class="about-subtitle">Comprehensive Engineering Solutions</p>
+        <div class="about-title-underline"></div>
+      </div>
+      <div class="core-services-grid-rework">
+        {coreServices.map(service => (
+          <a href={service.link} class="service-card-rework">
+            <div class="service-card-icon" set:html={service.icon}></div>
+            <h3 class="service-card-title">{service.title}</h3>
+            <div class="service-card-content">
+              <p>{service.description}</p>
+              <ul>
+                {service.capabilities.map((cap, index) => (
+                  <li style={`--delay: ${index * 0.1}s`}>{cap}</li>
+                ))}
+              </ul>
+            </div>
+            <div class="learn-more-rework">
+              Learn More <span>&rarr;</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Featured Projects Section -->
+    <section class="page-section featured-projects-kinetic">
+      <div class="section-header-center">
+          <h2 class="about-title">Featured Projects</h2>
+          <p class="about-subtitle">Excellence in Execution</p>
+          <div class="about-title-underline"></div>
+      </div>
+      <div class="featured-projects-grid-kinetic">
+        {featuredProjects.map(project => (
+          <a href={`/project/${project.id}`} class="project-card-kinetic">
+            <div class="card-background" style={`background-image: url(${project.imageUrl})`}></div>
+            <div class="card-content-kinetic">
+              <div class="card-header-kinetic">
+                <span class="category-kinetic">{project.category}</span>
+                <h3 class="title-kinetic">{project.title}</h3>
+                <p class="location-kinetic">{project.location}</p>
+              </div>
+              <div class="card-details-kinetic">
+                <p class="description-kinetic">{project.description}</p>
+                <div class="stats-kinetic">
+                  <span>{project.stat1}</span>
+                  <span>{project.stat2}</span>
                 </div>
-            ))}
-        </div>
+                <div class="view-project-btn">View Project</div>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="section-footer-center">
+        <a href="/projects" class="cta-button-rework">View All Projects</a>
+      </div>
     </section>
 
-    <section class="featured-projects">
-      <div class="section-container">
-        <h2 class="section-title">Featured Projects</h2>
-        <p class="section-subtitle">A selection of our work, showcasing our commitment to excellence and innovation across sectors.</p>
-        <div class="project-grid">
-          <!-- Projects remain the same -->
-          <a href="/projects/1" class="project-card">
-            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1428790067576-23423b3b2742?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
-            <div class="project-content">
-              <h4>Corporate Headquarters</h4>
-              <span>Commercial</span>
+    <!-- 6. Trusted By Section - Infinite Carousel -->
+    <section class="page-section trusted-by-carousel">
+      <div class="section-header-center">
+          <h2 class="about-title">Trusted by Leading Organizations</h2>
+          <p class="about-subtitle">Building partnerships that last</p>
+          <div class="about-title-underline"></div>
+      </div>
+      <div class="partner-carousel-container">
+        <div class="partner-carousel-track">
+          {[...trustedPartners, ...trustedPartners].map(item => (
+            <div class="partner-card-carousel">
+              <div class="logo-wrapper-carousel">
+                <i class={item.icon}></i>
+              </div>
+              <div class="partner-name-carousel">
+                <p>{item.name}</p>
+              </div>
             </div>
-          </a>
-          <a href="/projects/2" class="project-card">
-            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1541696492338-06b539455338?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
-            <div class="project-content">
-              <h4>Cityscape Bridge</h4>
-              <span>Infrastructure</span>
-            </div>
-          </a>
-           <a href="/projects/3" class="project-card">
-            <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6164a83639?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
-            <div class="project-content">
-              <h4>Modern Residence</h4>
-              <span>Residential</span>
-            </div>
-          </a>
+          ))}
         </div>
       </div>
+    </section>
+
+    <!-- 7. Final CTA Section -->
+    <section class="final-cta-section">
+        <div class="section-container-final-cta">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Let's discuss how DECON can deliver exceptional engineering solutions for your next project.</p>
+            <a href="/contact" class="cta-button-final">Contact Us Today</a>
+        </div>
     </section>
 
   </main>
-  <Footer />
 </Layout>
 
 <style>
-  /* --- Hero Section --- */
-  .hero {
-    position: relative;
-    background-image: url('https://images.unsplash.com/photo-1593113595449-869c62a8069a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: var(--color-background);
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 80vh;
+/* General Section Styles (from previous sections) */
+.page-section { padding: 5rem 2rem; }
+.section-header-center { text-align: center; margin-bottom: 3.5rem; }
+.about-title { font-size: 2.8rem; font-weight: 800; color: var(--color-text-primary); margin-bottom: 0.5rem; }
+.about-subtitle { font-size: 1.2rem; color: var(--color-text-secondary); margin-bottom: 1rem; }
+.about-title-underline { width: 60px; height: 4px; background-color: var(--color-primary); margin: 0 auto; }
+.section-footer-center { text-align: center; margin-top: 3rem; max-width: 1200px; margin-left: auto; margin-right: auto;}
+.section-title-center { text-align: center; font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+.section-tagline-center { text-align: center; font-size: 1.15rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto 3.5rem; }
+
+/* --- 3. About DECON Section Rework --- */
+.about-decon-rework { background-color: var(--color-surface); }
+.about-decon-container-rework { max-width: 1100px; margin: 0 auto; background-color: #F8F9FA; border-radius: 12px; padding: 3rem; border-left: 5px solid var(--color-primary); }
+.about-decon-main-content p { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1.5rem; }
+.about-decon-main-content p:last-of-type { margin-bottom: 3rem; }
+.credentials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; text-align: center; perspective: 1000px; }
+.credential-card-rework { background-color: #ffffff; padding: 2.5rem 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: all 0.3s ease-out; }
+.credential-card-rework:hover { transform: translateY(-10px) rotateX(5deg); box-shadow: 0 20px 30px rgba(0, 102, 204, 0.25); }
+.credential-icon { margin-bottom: 1.5rem; transition: transform 0.3s ease-out; }
+.credential-card-rework:hover .credential-icon { transform: scale(1.2); }
+.credential-card-rework h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
+.credential-card-rework p { font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.7; }
+
+/* --- 4. Core Services Section Rework --- */
+.core-services-rework { background-color: #fff; }
+.core-services-grid-rework { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+.service-card-rework { border: 1px solid var(--color-border); border-radius: 12px; padding: 2rem; text-align: center; background-color: #fff; transition: all 0.4s ease-out; position: relative; overflow: hidden; color: var(--color-text-primary); text-decoration: none; }
+.service-card-rework::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(180deg, rgba(235, 245, 255, 0) 0%, #EBF5FF 100%); opacity: 0; transition: opacity 0.4s ease-out; }
+.service-card-icon { color: var(--color-primary); margin: 0 auto 1.5rem; transition: all 0.4s ease-out; }
+.service-card-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 1rem; transition: all 0.4s ease-out; }
+.service-card-content { max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s ease-out, opacity 0.4s ease-out 0.1s; }
+.service-card-content p { color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+.service-card-content ul { list-style: none; padding-left: 0; text-align: left; }
+.service-card-content li { padding-left: 1.5rem; position: relative; margin-bottom: 0.75rem; color: var(--color-text-secondary); opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease-out var(--delay), transform 0.3s ease-out var(--delay); }
+.service-card-content li::before { content: '\2713'; color: var(--color-primary); position: absolute; left: 0; font-weight: 600; }
+.learn-more-rework { font-weight: 600; color: var(--color-primary); position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); transition: all 0.4s ease-out; }
+.learn-more-rework span { display: inline-block; transition: transform 0.3s ease; }
+.service-card-rework:hover { border-color: var(--color-primary); box-shadow: 0 10px 25px rgba(0, 102, 204, 0.1); }
+.service-card-rework:hover::before { opacity: 1; }
+.service-card-rework:hover .service-card-icon { transform: translateY(-130px) scale(1.5); color: var(--color-secondary); }
+.service-card-rework:hover .service-card-title { transform: translateY(-130px); }
+.service-card-rework:hover .service-card-content { max-height: 500px; opacity: 1; }
+.service-card-rework:hover .service-card-content li { opacity: 1; transform: translateY(0); }
+.service-card-rework:hover .learn-more-rework { transform: translateX(-50%) translateY(30px); }
+.service-card-rework:hover .learn-more-rework span { transform: translateX(5px); }
+
+/* --- 5. Featured Projects - Kinetic --- */
+.featured-projects-kinetic { background-color: var(--color-surface); }
+.featured-projects-grid-kinetic { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+.project-card-kinetic { position: relative; height: 450px; border-radius: 12px; overflow: hidden; color: #fff; text-decoration: none; display: block; box-shadow: var(--shadow-md); transition: box-shadow 0.4s ease; }
+.project-card-kinetic:hover { box-shadow: var(--shadow-xl); }
+.card-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.5s ease-out; }
+.project-card-kinetic:hover .card-background { transform: scale(1.05); }
+.project-card-kinetic::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 80%; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); pointer-events: none; }
+.card-content-kinetic { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem; }
+.card-header-kinetic { transition: transform 0.4s ease-out; }
+.category-kinetic { display: inline-block; padding: 0.4rem 0.8rem; background-color: rgba(0, 102, 204, 0.8); border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; }
+.title-kinetic { font-size: 1.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.5rem; }
+.location-kinetic { font-size: 1rem; color: rgba(255,255,255,0.8); }
+.card-details-kinetic { position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: rgba(10, 25, 47, 0.5); backdrop-filter: blur(10px); transform: translateY(100%); transition: transform 0.4s ease-out; }
+.project-card-kinetic:hover .card-details-kinetic { transform: translateY(0); }
+.project-card-kinetic:hover .card-header-kinetic { transform: translateY(-180px); }
+.description-kinetic { font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+.stats-kinetic { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
+.stats-kinetic span { font-weight: 600; background: rgba(255,255,255,0.1); padding: 0.25rem 0.75rem; border-radius: 5px; }
+.view-project-btn { background-color: var(--color-primary); color: var(--color-background); padding: 0.8rem 1.5rem; border-radius: 50px; text-align: center; font-weight: 700; transition: all 0.3s ease; }
+.view-project-btn:hover { background-color: #fff; color: var(--color-primary-dark); }
+.cta-button-rework { background-color: var(--color-primary); color: var(--color-background); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-decoration: none; display: inline-block; transition: all 0.3s ease; }
+.cta-button-rework:hover { background-color: var(--color-primary-dark); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+/* --- 6. Trusted By Section - Infinite Carousel --- */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
   }
-
-  .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(26, 26, 26, 0.7); }
-  .hero-content { position: relative; z-index: 1; padding: 2rem; max-width: 800px; }
-  .hero-title { font-size: 4.5rem; font-weight: 700; color: var(--color-background); margin-bottom: 1rem; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
-  .hero-subtitle { font-size: 1.25rem; font-weight: 300; margin-bottom: 2.5rem; opacity: 0.9; max-width: 650px; margin-left: auto; margin-right: auto; }
-  .hero-cta { background-color: var(--color-accent); color: var(--color-background); padding: 1rem 2.5rem; border-radius: 50px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: background-color 0.3s ease, transform 0.3s ease; box-shadow: var(--shadow-md); }
-  .hero-cta:hover { background-color: #0056b3; transform: translateY(-3px); }
-
-  /* --- Services Section --- */
-  .services { background-color: var(--color-background); padding: 6rem 2rem; }
-  .section-container { max-width: 1200px; margin: 0 auto; text-align: center; }
-  .section-title { font-size: 2.75rem; margin-bottom: 1rem; }
-  .section-subtitle { font-size: 1.1rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto 4rem; }
-  .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
-  .service-card { background-color: var(--color-surface); padding: 2.5rem; border: 1px solid var(--color-border); border-radius: 8px; text-align: left; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; }
-  .service-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
-  .service-icon { margin-bottom: 1.5rem; color: var(--color-accent); }
-  .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-primary); }
-  .service-card p { color: var(--color-text-secondary); line-height: 1.7; }
-
-  /* --- Stats Section --- */
-  .stats-section { background-color: var(--color-primary); color: var(--color-background); padding: 5rem 2rem; }
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; max-width: 1000px; }
-  .stat-item { padding: 1rem; }
-  .stat-value { display: block; font-size: 3.5rem; font-weight: 700; color: var(--color-accent); }
-  .stat-label { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.8; }
-
-  /* --- Featured Projects Section --- */
-  .featured-projects { background-color: var(--color-surface); padding: 6rem 2rem; }
-  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; }
-  .project-card { position: relative; overflow: hidden; border-radius: 8px; box-shadow: var(--shadow-md); min-height: 450px; display: flex; align-items: flex-end; color: var(--color-background); transition: transform 0.4s ease, box-shadow 0.4s ease; }
-  .project-card:hover { transform: scale(1.03); box-shadow: var(--shadow-lg); }
-  .project-image { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.4s ease; }
-  .project-card:hover .project-image { transform: scale(1.1); }
-  .project-content { position: relative; z-index: 2; padding: 2rem; width: 100%; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%); }
-  .project-content h4 { font-size: 1.75rem; color: var(--color-background); margin-bottom: 0.5rem; }
-  .project-content span { font-weight: 500; color: var(--color-accent); text-transform: uppercase; letter-spacing: 1px; font-size: 0.85rem; }
-
-  @media (max-width: 768px) {
-    .hero-title { font-size: 3rem; }
-    .stat-value { font-size: 2.75rem; }
+  100% {
+    transform: translateX(calc(-250px * 12)); /* Card width * number of original partners */
   }
+}
+
+.trusted-by-carousel {
+  background-color: #fff;
+  padding: 5rem 0; /* Vertical padding, no horizontal */
+  position: relative;
+  overflow: hidden;
+}
+
+.trusted-by-carousel::before,
+.trusted-by-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  z-index: 2;
+}
+
+.trusted-by-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255,255,255,1) 20%, rgba(255,255,255,0));
+}
+
+.trusted-by-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255,255,255,1) 20%, rgba(255,255,255,0));
+}
+
+.partner-carousel-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.partner-carousel-track {
+  display: flex;
+  width: calc(250px * 24); /* card_width * (number_of_partners * 2) */
+  animation: scroll 60s linear infinite;
+}
+
+.partner-carousel-container:hover .partner-carousel-track {
+  animation-play-state: paused;
+}
+
+.partner-card-carousel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  text-align: center;
+  padding: 2rem 1rem;
+  width: 250px;
+  flex-shrink: 0; /* Prevent shrinking */
+  margin: 0 1.25rem; /* Gap between cards */
+  transition: border-color 0.3s ease;
+  height: 180px; /* Taller cards */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.partner-card-carousel:hover {
+  border-color: var(--color-primary);
+}
+
+.logo-wrapper-carousel {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.logo-wrapper-carousel i {
+  font-size: 3rem;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.partner-card-carousel:hover .logo-wrapper-carousel i {
+    color: var(--color-primary);
+}
+
+.partner-name-carousel p {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+
+/* 7. Final CTA Section */
+.final-cta-section { background: var(--color-primary-dark); color: #fff; text-align: center; padding: 4rem 2rem; }
+.section-container-final-cta { max-width: 800px; margin: 0 auto; }
+.final-cta-section h2 { font-size: 2.2rem; margin-bottom: 1rem; color: #fff; }
+.final-cta-section p { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.9; }
+.cta-button-final { background-color: var(--color-primary); color: #fff; padding: 1rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: all 0.3s ease; }
+.cta-button-final:hover { background-color: #fff; color: var(--color-primary-dark); transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+/* Responsive Adjustments */
+@media(max-width: 992px) {
+    .featured-projects-grid-kinetic { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+    .project-card-kinetic:hover .card-header-kinetic { transform: translateY(-160px); }
+}
+@media(max-width: 768px) {
+    .about-title { font-size: 2.2rem; }
+    .featured-projects-grid-kinetic { grid-template-columns: 1fr; }
+    .service-card-rework:hover .service-card-icon, .service-card-rework:hover .service-card-title { transform: translateY(0) scale(1); }
+    .service-card-rework .service-card-content { max-height: none; opacity: 1; }
+    .project-card-kinetic:hover .card-details-kinetic { transform: translateY(0); }
+    .project-card-kinetic:hover .card-header-kinetic { transform: translateY(0); }
+    .project-card-kinetic .card-details-kinetic { background: rgba(10, 25, 47, 0.7); }
+}
 </style>

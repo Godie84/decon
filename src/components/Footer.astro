@@ -1,107 +1,153 @@
 ---
 const year = new Date().getFullYear();
+
+const navLinks = [
+  { href: "/", text: "Home" },
+  { href: "/about", text: "About" },
+  { href: "/services", text: "Services" },
+  { href: "/projects", text: "Projects" },
+  { href: "/team", text: "Team" },
+  { href: "/contact", text: "Contact" },
+];
+
+const serviceLinks = [
+  { href: "#", text: "Bridge Design" },
+  { href: "#", text: "Roadway & Drainage" },
+  { href: "#", text: "Building Design" },
+  { href: "#", text: "Construction Engineering" },
+];
+
 ---
 
 <footer>
   <div class="footer-container">
     <div class="footer-column about">
-      <h4>DECON LLC</h4>
-      <p>A Houston-based multidisciplinary engineering firm delivering innovative solutions. Engineering Excellence Since 2010.</p>
-      <div class="company-ids">
-        <span>DUNS: 079546386</span>
-        <span>CAGE: 80M24</span>
-        <span>UEI#: HFMHHDWH4PS4</span>
-      </div>
+      <h4 class="logo">DECON LLC</h4>
+      <p class="tagline">Engineering Excellence Since 2010</p>
+      <p>A Houston-based multidisciplinary engineering firm delivering innovative solutions.</p>
     </div>
     <div class="footer-column links">
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/services">Services</a></li>
-        <li><a href="/projects">Projects</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/contact">Contact</a></li>
+        {navLinks.map(link => <li><a href={link.href}>{link.text}</a></li>)}
+      </ul>
+    </div>
+    <div class="footer-column links">
+      <h4>Services</h4>
+      <ul>
+        {serviceLinks.map(link => <li><a href={link.href}>{link.text}</a></li>)}
       </ul>
     </div>
     <div class="footer-column contact">
       <h4>Contact Info</h4>
-      <p>2 Riverway Dr. Unit 605<br>Houston, TX 77056</p>
-      <p>Email: <a href="mailto:projects@deconeng.com">projects@deconeng.com</a></p>
-      <p>Phone: <a href="tel:+18329170912">+1 (832) 917-0912</a></p>
+      <address>
+        2 Riverway Dr. Unit 605<br />
+        Houston, TX 77056<br />
+        <a href="tel:+18329170912">+1 (832) 917-0912</a><br />
+        <a href="mailto:projects@deconeng.com">projects@deconeng.com</a>
+      </address>
+      <div class="gov-info">
+        <p>DUNS: 079546386</p>
+        <p>CAGE: 80M24</p>
+        <p>UEI#: HFMHHDWH4PS4</p>
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2025 DECON LLC. All Rights Reserved.</p>
+    <p>&copy; {year} DECON LLC. All rights reserved.</p>
+    <div class="legal-links">
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
   </div>
 </footer>
 
 <style>
   footer {
-    background-color: var(--color-surface);
-    color: var(--color-text-secondary);
+    background-color: var(--footer-background, var(--color-surface));
+    color: var(--footer-text, var(--color-text-secondary));
     border-top: 1px solid var(--color-border);
+    padding-top: 5rem;
+    margin-top: 6rem;
   }
 
   .footer-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 3rem;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 4rem 2rem;
+    padding: 0 2rem 4rem;
+  }
+
+  .footer-column .logo {
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--color-text-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+  }
+
+  .footer-column .tagline {
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
   }
 
   .footer-column h4 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--color-primary);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--footer-heading-color, var(--color-text-primary));
     margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
   }
 
-  .footer-column p, .footer-column li, .footer-column span {
+  .footer-column.about p {
     font-size: 0.95rem;
     line-height: 1.7;
+    margin-bottom: 1rem;
+    max-width: 300px;
+  }
+
+  .footer-column.links ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+  .footer-column.links a { font-size: 0.95rem; color: var(--footer-text, var(--color-text-secondary)); text-decoration: none; transition: color 0.3s ease; }
+  .footer-column.links a:hover { color: var(--color-primary); text-decoration: underline; }
+
+  .footer-column.contact address {
+    font-style: normal;
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
   }
   
-  .footer-column.about p {
-    max-width: 320px;
-    margin-bottom: 1rem;
-  }
-
-  .company-ids {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    opacity: 0.8;
-  }
-
-  .footer-column.links ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .footer-column.links a:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
-  }
-
   .footer-column.contact a {
-    color: var(--color-text-secondary);
-    transition: color 0.3s ease;
-  }
-
-  .footer-column.contact a:hover {
-    color: var(--color-accent);
+    color: var(--footer-text, var(--color-text-secondary));
     text-decoration: none;
+  }
+  .footer-column.contact a:hover { color: var(--color-primary); text-decoration: underline; }
+
+  .gov-info p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+      margin-bottom: 0.25rem;
   }
 
   .footer-bottom {
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
     padding: 1.5rem 2rem;
     border-top: 1px solid var(--color-border);
     font-size: 0.9rem;
   }
+
+  .legal-links a { color: var(--footer-text, var(--color-text-secondary)); text-decoration: none; transition: color 0.3s ease; }
+  .legal-links a:hover { color: var(--color-primary); text-decoration: underline; }
 </style>

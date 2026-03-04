@@ -1,51 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-
-const services = [
-  {
-    title: "Bridge Design & Construction Engineering",
-    description: "Bridge design and construction engineering are our core competencies. For the last fifteen years, we have mostly focused on design-build and Public-Private Partnerships (P3) projects for the Departments of Transportation in the states where we practice. With extensive experience in diverse bridge types and structural systems, utilizing a range of materials, we specialize in delivering innovative solutions to complex technical challenges through the application of advanced technologies.",
-    stats: [
-      { value: "100+", label: "Bridges Designed" },
-      { value: "15", label: "Years Experience" }
-    ],
-    capabilities: ["Value Engineering", "Structural/Bridge Design Optimization", "Bridge/Structural Shop Drawings", "Bridge Erection Engineering & Procedures", "Bridge Inspections & Load Rating Analysis", "Bridge Demolition & Procedures", "Bridge Rehabilitations & Retrofit", "Temporary Shoring, Formwork, Falsework & Temporary Bracing Design", "Retaining Wall Design", "Deep Foundation Repair Procedures", "Structural Deficiency Repairs", "Traffic Control Plans & Phased Construction", "Field Design Changes (FDC)", "Precast & Prestressed Concrete Structures", "Ancillary Highway Structures"],
-    featured: ["I-35 NEX Central Project - $1.59B elevated highway", "I-285 and SH-400 Interchange, Atlanta, GA", "SH 146 and SH 3 Bridge Replacement, Galveston County, TX"]
-  },
-  {
-    title: "Roadway & Drainage",
-    description: "DECON offers specialized Roadway and Drainage services, concentrating on Design-Build, PS&E, and trail development projects. With a strong presence in multiple states, we have established a reputation for excellence and unequaled customer service for Departments of Transportation, local and regional agencies, and toll road authorities. DECON's expertise lies in identifying opportunities to reduce project costs by optimizing construction sequencing and improving traffic safety operations.",
-    stats: [
-      { value: "500+", label: "Miles Designed" },
-      { value: "50+", label: "Roadway Projects" }
-    ],
-    capabilities: ["Roadway/Highway Design", "Temporary & Final Roadway Drainage Optimization", "Traffic Control Plan (TCP)", "Traffic Modeling", "Hydraulic and Hydrologic Studies", "3-Dimensional Traffic Modeling", "Final and Temporary Drainage Design", "Retaining Walls", "Signing and Pavement Markings", "Traffic Signalization", "Stormwater Pollution Prevention Plan (SW3P)", "Utility Conflicts Management & Resolutions", "Feasibility Studies for Bicycle-Pedestrian Facilities", "Intersection Improvements & Signal Timing", "Envision Sustainability Analysis"],
-    featured: ["SH 99 at Kingwood Road - $1.3B, 52.8-mile Grand Parkway project", "Sam Houston Tollway East - AET conversion", "Trails Connectivity: Tollways to Trailways, Harris County, TX"]
-  },
-  {
-    title: "Building Design",
-    description: "At DECON, we provide comprehensive civil engineering and structural design services for buildings across various sectors, including residential, commercial, institutional, and industrial applications. Our innovative approach, particularly through the use of BIM-compliant systems, enhances building efficiency and promotes environmental sustainability. We deliver LOD 100-500 models with 3D visualization, 4D budgeting, and 5D scheduling capabilities.",
-    stats: [
-      { value: "50+", label: "Buildings Designed" },
-      { value: "BIM", label: "LOD 100-500" }
-    ],
-    capabilities: ["Building Structural Analysis & Design", "Construction Plans & Documents Preparation", "Engineering Calculations Reports", "Foundations Design", "Retaining Walls & Soil Stability Analysis", "Value Engineering", "Construction Structural Special Inspections", "Construction Engineering Support", "Civil Site Design", "Peer Review & QA/QC Services", "BIM Implementation", "3D, 4D Budgeting, 5D Scheduling"],
-    featured: ["Cameron Bear Lane Warehouse - 150,000 SF facility", "Kaua Building - 18-floor residential tower", "Houston Quran Academy - 40,000 SF institutional building"]
-  }
-];
-
-const precertCategories = {
-    "Roadway & Planning": ["1.1.1 - Policy Planning", "1.2.1 - Systems Planning", "1.3.1 - Subarea/Corridor Planning", "1.4.1 - Land Planning/Engineering", "1.5.1 - Feasibility Studies", "3.2.1 - Route Studies and Schematic Design", "4.2.1 - Roadway Design", "4.4.1 - Freeway Interchanges", "4.5.1 - Constructability Review"],
-    "Bridge & Structures": ["5.2.1 - Bridge Design", "5.3.1 - Multi-Level Interchange Design", "5.5.1 - Bridge Class Culvert Design", "5.6.1 - Structural Engineering for Overhead Sign Supports", "6.1.1 - Routine Bridge Inspection Team Leader", "6.2.1 - Complex Bridge Inspection Team Leader", "17.1.1 - Structural Engineering", "24.7.1 - Toll Plaza Design"],
-    "Traffic & Safety": ["7.1.1 - Traffic Engineering Studies", "7.3.1 - Traffic Signal Timing", "8.1.1 - Signing, Pavement Marking, and Channelization", "8.3.1 - Signalization", "11.1.1 - Roadway Construction Management and Inspection", "23.11.1 - Plan Review"],
-    "Specialized Services": ["10.4.3 - Pump Stations-Structures", "14.3.1 - Transportation Foundation Studies", "14.5.1 - Evaluation & Design of Geotechnical Related Structures", "18.2.1 - Subsurface Utility Engineering"]
-};
-
+import Stats from '../components/Stats.astro';
+import { services, precertCategories } from '../data/services.ts';
 ---
 <Layout title="Our Services - DECON LLC">
-  <Header />
   <main>
     <section class="page-hero">
       <div class="section-container">
@@ -53,6 +11,8 @@ const precertCategories = {
         <p class="page-subtitle">15 years of delivering innovative engineering solutions for complex challenges across infrastructure and building sectors.</p>
       </div>
     </section>
+
+    <Stats />
 
     <div class="services-anchor-nav">
         <div class="section-container">
@@ -120,7 +80,6 @@ const precertCategories = {
       </div>
     </section>
   </main>
-  <Footer />
 </Layout>
 
 <style>
@@ -131,7 +90,7 @@ const precertCategories = {
   .section-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
   /* Anchor Nav */
-  .services-anchor-nav { background: var(--color-surface); padding: 1rem 0; border-bottom: 1px solid var(--color-border); text-align: center; position: sticky; top: 0; background: var(--color-background); z-index: 10; }
+  .services-anchor-nav { background: var(--color-surface); padding: 1rem 0; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); text-align: center; position: sticky; top: 0; background: var(--color-background); z-index: 10; }
   .services-anchor-nav a { margin: 0 1rem; font-weight: 600; color: var(--color-accent); text-decoration: none; transition: color 0.3s ease; }
   .services-anchor-nav a:hover { color: var(--color-primary); }
 

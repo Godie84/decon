@@ -1,7 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/Footer.astro';
 import { projects, type Project } from '../../data/projects.ts';
 
 export async function getStaticPaths() {
@@ -22,7 +20,6 @@ if (!project) {
 ---
 
 <Layout title={`${project.title} - DECON LLC`}>
-  <Header />
   <main>
     <article class="project-detail">
       <header class="project-header">
@@ -36,13 +33,13 @@ if (!project) {
       </header>
 
       <div class="project-image-banner">
-        <img src={project.img} alt={project.img_alt} />
+        <img src={project.imageUrl} alt={project.imageAlt} />
       </div>
 
       <div class="project-body">
         <div class="section-container-narrow">
           <h2 class="section-title-small">Project Overview</h2>
-          <p class="project-description-full">{project.description}</p>
+          <p class="project-description-full">{project.longDescription}</p>
           
           <!-- You can add more project-specific details here -->
           <!-- For example: -->
@@ -65,7 +62,6 @@ if (!project) {
     </section>
 
   </main>
-  <Footer />
 </Layout>
 
 <style>

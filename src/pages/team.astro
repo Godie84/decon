@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import TeamCard from '../components/TeamCard.astro'; // Import the new component
 import { teamMembers } from '../data/team.ts';
 
@@ -19,7 +17,6 @@ const teamStats = [
 ---
 
 <Layout title="Our Team - DECON LLC">
-  <Header />
   <main>
     <section class="page-hero">
       <div class="section-container">
@@ -85,7 +82,6 @@ const teamStats = [
     </section>
 
   </main>
-  <Footer />
 </Layout>
 
 <style>

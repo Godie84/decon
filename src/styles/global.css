@@ -1,25 +1,40 @@
 /* --- Import Fonts --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
 
 /* --- CSS Variables & Global Styles --- */
 :root {
-  /* Architectural Color Palette */
-  --color-primary: #1a1a1a; /* Deep Charcoal for text */
-  --color-text-primary: #1a1a1a;
-  --color-text-secondary: #6b7280; /* Medium Gray for subtitles */
-  --color-accent: #007aff; /* Vibrant Blue for accents & CTAs */
-  --color-background: #ffffff; /* Crisp White */
-  --color-surface: #f3f4f6; /* Light Gray for cards/surfaces */
-  --color-border: #e5e7eb;   /* Lighter Gray for borders */
+  /* Official Brand Palette */
+  --color-primary: #0066CC;      /* Primary Blue */
+  --color-primary-dark: #004B99; /* Darker Blue for hover */
+  --color-secondary: #FF6B35;   /* Orange Accent */
+  
+  --color-text-primary: #1a1a1a; /* Text Dark */
+  --color-text-secondary: #6a6a6a;/* Text Light */
+  
+  --color-background: #ffffff;  /* BG White */
+  --color-surface: #f8f9fa;     /* BG Light */
+  --color-border: #e0e0e0;      /* Border Color */
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 2px 15px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.2);
 
   /* Typography */
-  --font-primary: 'Inter', sans-serif;
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Montserrat', 'Inter', sans-serif;
+
+  /* Component-specific variables */
+  --header-background: rgba(255, 255, 255, 0.85);
+  --nav-link-color: var(--color-text-secondary);
+  --nav-link-hover-color: var(--color-text-primary);
+  --nav-link-active-color: var(--color-primary);
+  --footer-background: var(--color-surface);
+  --footer-text: var(--color-text-secondary);
+  --footer-heading-color: var(--color-text-primary);
+
+  /* Base settings */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -33,26 +48,11 @@
   padding: 0;
 }
 
-body {
-  font-family: var(--font-primary);
-  background-color: var(--color-background);
-  color: var(--color-text-primary);
-  line-height: 1.6;
+html {
+    font-family: var(--font-primary);
+    scroll-behavior: smooth;
 }
 
-a {
-  text-decoration: none;
-  color: var(--color-accent);
-  transition: color 0.3s ease;
-}
-
-a:hover {
-  color: #0056b3; /* Darker blue on hover */
-}
-
-h1, h2, h3, h4 {
-  font-family: var(--font-primary);
-  color: var(--color-primary);
-  font-weight: 700;
-  line-height: 1.3;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
 }

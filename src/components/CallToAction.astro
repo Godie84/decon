@@ -1,0 +1,137 @@
+---
+// src/components/CallToAction.astro
+---
+<section class="cta-section-final">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">Engineering Excellence Since 2010</h2>
+      <p class="cta-subtitle">
+        Delivering innovative, resilient, and cost-effective engineering solutions that enhance the built environment
+      </p>
+      
+      <div class="cta-stats">
+        <div class="stat">
+          <span class="stat-number">15</span>
+          <span class="stat-label">Years of Excellence</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">100+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">11</span>
+          <span class="stat-label">States Licensed</span>
+        </div>
+      </div>
+
+      <div class="cta-buttons">
+        <a href="/projects" class="cta-btn primary">View Our Work</a>
+        <a href="/contact" class="cta-btn secondary">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-section-final {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    padding: 6rem 2rem;
+    text-align: center;
+  }
+
+  .cta-section-final .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+  }
+
+  .cta-subtitle {
+    font-size: 1.15rem;
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+    opacity: 0.9;
+    line-height: 1.7;
+  }
+
+  .cta-stats {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-bottom: 4rem;
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .stat-label {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+  }
+
+  .cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-btn {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    font-size: 1rem;
+  }
+
+  .cta-btn.primary {
+    background-color: #ffffff;
+    color: var(--color-primary);
+  }
+  .cta-btn.primary:hover {
+    background-color: var(--color-surface);
+    transform: translateY(-3px);
+  }
+
+  .cta-btn.secondary {
+    border-color: #ffffff;
+    color: #ffffff;
+  }
+  .cta-btn.secondary:hover {
+    background-color: #ffffff;
+    color: var(--color-primary);
+    transform: translateY(-3px);
+  }
+  
+  @media (max-width: 768px) {
+    .cta-title {
+        font-size: 2.5rem;
+    }
+    .cta-stats {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    .stat-number {
+        font-size: 3rem;
+    }
+  }
+
+</style>

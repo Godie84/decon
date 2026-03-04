@@ -1,12 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import { projects } from '../data/projects.ts';
 ---
 
 <Layout title="Our Projects - DECON LLC">
-  <Header />
   <main>
     <section class="page-hero">
       <div class="section-container">
@@ -56,12 +53,12 @@ import { projects } from '../data/projects.ts';
             <div class="project-card-wrapper" data-category={project.category}>
               <a href={`/project/${project.id}`} class="project-card">
                 <div class="project-image">
-                  <img src={project.img} alt={project.img_alt} loading="lazy" />
+                  <img src={project.imageUrl} alt={project.imageAlt} loading="lazy" />
                 </div>
                 <div class="project-content">
                   <span class="project-category">{project.category}</span>
                   <h3 class="project-title">{project.title}</h3>
-                  <p class="project-description">{project.description.substring(0, 120)}...</p>
+                  <p class="project-description">{project.shortDescription.substring(0, 120)}...</p>
                   <div class="project-tags">
                     {project.tags.map(tag => <span class="tag">{tag}</span>)}
                   </div>
@@ -82,7 +79,6 @@ import { projects } from '../data/projects.ts';
     </section>
 
   </main>
-  <Footer />
 </Layout>
 
 <style>
@@ -102,7 +98,7 @@ import { projects } from '../data/projects.ts';
   /* Projects Grid */
   .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 2.5rem; }
   
-  .project-card { display: flex; flex-direction: column; background-color: var(--color-surface); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; }
+  .project-card { display: flex; flex-direction: column; background-color: var(--color-surface); border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; text-decoration: none; color: inherit;}
   .project-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
   
   .project-image img { width: 100%; height: 220px; object-fit: cover; }
