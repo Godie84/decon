@@ -4,16 +4,24 @@
 /* --- CSS Variables & Global Styles --- */
 :root {
   /* Official Brand Palette */
-  --color-primary: #0066CC;      /* Primary Blue */
-  --color-primary-dark: #004B99; /* Darker Blue for hover */
-  --color-secondary: #FF6B35;   /* Orange Accent */
-  
-  --color-text-primary: #1a1a1a; /* Text Dark */
-  --color-text-secondary: #6a6a6a;/* Text Light */
-  
-  --color-background: #ffffff;  /* BG White */
-  --color-surface: #f8f9fa;     /* BG Light */
-  --color-border: #e0e0e0;      /* Border Color */
+  --color-primary: #0066CC;
+  /* Primary Blue */
+  --color-primary-dark: #004B99;
+  /* Darker Blue for hover */
+  --color-secondary: #FF6B35;
+  /* Orange Accent */
+
+  --color-text-primary: #1a1a1a;
+  /* Text Dark */
+  --color-text-secondary: #6a6a6a;
+  /* Text Light */
+
+  --color-background: #ffffff;
+  /* BG White */
+  --color-surface: #f8f9fa;
+  /* BG Light */
+  --color-border: #e0e0e0;
+  /* Border Color */
 
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
@@ -42,17 +50,39 @@
 }
 
 /* --- Reset & Base Styles --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-    font-family: var(--font-primary);
-    scroll-behavior: smooth;
+  font-family: var(--font-primary);
+  scroll-behavior: smooth;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
+/* --- Promotional Banner - Responsive --- */
+.promo-banner {
+  width: 100%;
+  overflow: hidden;
+  display: block;
+}
+
+.promo-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 100%;
+  object-fit: cover;
 }
